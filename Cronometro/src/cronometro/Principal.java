@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ClasePrincipal.java
+ * 2018
+ * 
  */
 package cronometro;
 
@@ -11,59 +11,94 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- *
+ * La clase Principal permite la interaccion del usuario con el programa.
+ * @version 1.0
  * @author Estudiantes
  */
 public class Principal {
 
-    /**
-     * @param args the command line arguments
-     */
+    public static Timer timer;
+    
     public static void main(String[] args) {
+        
         Cronometro c = new Cronometro();
-        int x=0;
-        Timer timer;
+       
         timer = new Timer();
+        
+        /**
+         * constructor de la clase TimerTask 
+    
+         */
 
         TimerTask task = new TimerTask() {
-            @Override
+            
+        @Override
+        
+        /**
+         * operacion run: se encarga de crear un temporizador para mostrar los resultados del cronometro
+         */
+        
             public void run() {
-                 if(x==0){
-                 if(!c.obtenerTiempo().equals("00 : 02 : 00 : 0")) {
+                
+                if(!c.obtenerTiempo().equals("00 : 02 : 00 : 0")) {
                     c.avanzar();
                     System.out.println(c.obtenerTiempo());
-                   
-                 }else{
-                  x++;
+                }
+                
+                else {
+                    timer.cancel();
                     
                 }
-                }
-                 
-               
+                
             }
+
         };
+        
+        
+       
         // Empezamos dentro de 0ms y luego lanzamos la tarea cada 100ms
 
         timer.schedule(task, 0, 1);
+        
+        /*
+        
+        public void update() {
+        TimerTask timerTask = new TimerTask() {
 
-//        for (int i = 0; i < 1000; i++) {
-//
-//            
-//            timer.schedule(task, 0, 100);
-//            
-//            if (i % 100 == 0) {
-//                c.guardarMemoria();
-//            }
-//        }
-//        System.out.println("Memorias");
-//        c.mostrarMemorias();
-//        System.out.println("Retrocediendo");
-//       
-//         for (int i = 0; i < 1000; i++) {
+            @Override
+            public void run() {
+                System.out.println("Updated timer");
 
-//            c.retroceder();
-//            System.out.println(c.obtenerTiempo());
-//        }
+            }
+        };
+        timer.cancel();
+        timer = new Timer();
+        timer.schedule(timerTask, 2000);
+        }
+        */
+       
+
+         for (int i = 0; i < 1000; i++) {
+                
+
+                    if (i % 100 == 0) {
+                        c.guardarMemoria();
+                    }
+                }
+         
+       
+        c.mostrarMemorias();
+        
+        
+       
+        /*
+        for (int i = 0; i < 1000; i++) {
+
+            c.retroceder();
+            System.out.println(c.obtenerTiempo());
+        }
+        */
    }
 
 }
+

@@ -1,14 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ClaseCronometro.java
+ * 2018
  */
 package cronometro.logica;
 
 import java.util.ArrayList;
 
 /**
- *
+ * La clase Cronometro permite generar un objeto que cumpla la funcion de contar y guardar el tiempo durante un periodo determinado.
+ * @version 1.0
  * @author Estudiantes
  */
 public class Cronometro {
@@ -19,6 +19,10 @@ public class Cronometro {
     private UnidadTiempo horas;
 
     private ArrayList<Memoria> memorias;
+    
+    /**
+     * constructor de la clase Cronometro
+     */
 
     public Cronometro() {
         decimas = new UnidadTiempo(10);
@@ -27,6 +31,10 @@ public class Cronometro {
         horas = new UnidadTiempo(24);
         memorias = new ArrayList<Memoria>();
     }
+    
+    /**
+     * Setters y Getters de los atributos agregados de Unidad de Tiempo
+    */
 
     public UnidadTiempo getDecimas() {
         return decimas;
@@ -59,6 +67,10 @@ public class Cronometro {
     public void setHoras(UnidadTiempo horas) {
         this.horas = horas;
     }
+    
+    /**
+     * operacion avanzar
+     */
 
     public void avanzar() {
         decimas.avanzar();
@@ -73,6 +85,10 @@ public class Cronometro {
         }
     }
     
+    /**
+     * operacion retroceder
+     */
+    
     public void retroceder(){
         decimas.retroceder();
         if(decimas.getValor()==decimas.getTope()-1){
@@ -85,6 +101,10 @@ public class Cronometro {
             }
         }
     }
+    
+    /**
+     * operacion obtenerTiempo
+     */
 
     public String obtenerTiempo() {
         return horas.obtenerValorFormateado() + " : "
@@ -92,6 +112,10 @@ public class Cronometro {
                 + segundos.obtenerValorFormateado() + " : "
                 + decimas.obtenerValorFormateado();
     }
+    
+    /**
+     * operacion guardarMemoria
+     */
 
     public void guardarMemoria() {
         Memoria m = new Memoria();
@@ -104,6 +128,10 @@ public class Cronometro {
         memorias.add(m);
         
     }
+    
+    /**
+     * operacion mostrarMemorias
+     */
 
     public void mostrarMemorias() {
         for (Memoria memoria : memorias) {
